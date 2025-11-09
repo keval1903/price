@@ -136,7 +136,7 @@ export default function PlywoodSimple() {
         </main>
 
         <footer style={{ marginTop: 18, color: "#6b7280", fontSize: 13, textAlign: "center" }}>
-          Data from Google Sheets. Update sheet to change prices/images.
+          Plywood rates are indicative. Contact us for latest prices and availability.
         </footer>
       </div>
     </div>
