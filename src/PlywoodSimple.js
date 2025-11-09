@@ -87,53 +87,129 @@ export default function PlywoodSimple() {
         {loading && <div style={{ padding: 24, textAlign: "center" }}>Loading…</div>}
         {error && <div style={{ padding: 24, color: "#b91c1c" }}>Error: {error}</div>}
 
-        <main style={{ display: "grid", gap: 20 }}>
-          {items.map(item => (
-            <section key={item.id || item.category} style={{ background: "#fff", borderRadius: 12, padding: 16, boxShadow: "0 1px 3px rgba(0,0,0,0.06)" }}>
-              <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
-                <div style={{ textAlign: "center" }}>
-                  <h2 style={{ margin: "4px 0" }}>{item.category}</h2>
-                  {item.photo_url ? (
-                    <img src={item.photo_url} alt={item.category} style={{ maxWidth: "100%", maxHeight: 320, objectFit: "contain", borderRadius: 8 }} />
-                  ) : (
-                    <div style={{ height: 180, background: "#f3f4f6", borderRadius: 8, display: "flex", alignItems: "center", justifyContent: "center", color: "#9ca3af" }}>No image</div>
-                  )}
-                </div>
-
-                {item.description && <div style={{ color: "#374151" }}>{item.description}</div>}
-
-                <div style={{ overflowX: "auto" }}>
-                  <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 14 }}>
-                    <thead style={{ background: "#f9fafb" }}>
-                      <tr>
-                        <th style={{ textAlign: "left", padding: "8px", borderBottom: "1px solid #e5e7eb" }}>Size</th>
-                        <th style={{ textAlign: "right", padding: "8px", borderBottom: "1px solid #e5e7eb" }}>Price</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td style={{ padding: "8px", borderBottom: "1px solid #f3f4f6" }}>18mm</td>
-                        <td style={{ padding: "8px", textAlign: "right", borderBottom: "1px solid #f3f4f6" }}>{item.price_18mm ? `₹ ${item.price_18mm}` : "—"}</td>
-                      </tr>
-                      <tr>
-                        <td style={{ padding: "8px", borderBottom: "1px solid #f3f4f6" }}>12mm</td>
-                        <td style={{ padding: "8px", textAlign: "right", borderBottom: "1px solid #f3f4f6" }}>{item.price_12mm ? `₹ ${item.price_12mm}` : "—"}</td>
-                      </tr>
-                      <tr>
-                        <td style={{ padding: "8px", borderBottom: "1px solid #f3f4f6" }}>8mm</td>
-                        <td style={{ padding: "8px", textAlign: "right", borderBottom: "1px solid #f3f4f6" }}>{item.price_8mm ? `₹ ${item.price_8mm}` : "—"}</td>
-                      </tr>
-                      <tr>
-                        <td style={{ padding: "8px" }}>6mm</td>
-                        <td style={{ padding: "8px", textAlign: "right" }}>{item.price_6mm ? `₹ ${item.price_6mm}` : "—"}</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
+<main style={{ display: "grid", gap: 20 }}>
+  {items.map((item, index) => (
+    <React.Fragment key={item.id || item.category}>
+      <section
+        style={{
+          background: "#fff",
+          borderRadius: 12,
+          padding: 16,
+          boxShadow: "0 1px 3px rgba(0,0,0,0.06)",
+        }}
+      >
+        {/* content */}
+        <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+          <div style={{ textAlign: "center" }}>
+            <h2 style={{ margin: "4px 0" }}>{item.category}</h2>
+            {item.photo_url ? (
+              <img
+                src={item.photo_url}
+                alt={item.category}
+                style={{
+                  maxWidth: "100%",
+                  maxHeight: 320,
+                  objectFit: "contain",
+                  borderRadius: 8,
+                }}
+              />
+            ) : (
+              <div
+                style={{
+                  height: 180,
+                  background: "#f3f4f6",
+                  borderRadius: 8,
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  color: "#9ca3af",
+                }}
+              >
+                No image
               </div>
-            </section>
-          ))}
-        </main>
+            )}
+          </div>
+
+          {item.description && (
+            <div style={{ color: "#374151" }}>{item.description}</div>
+          )}
+
+          {/* Price table */}
+          <div style={{ overflowX: "auto" }}>
+            <table
+              style={{
+                width: "100%",
+                borderCollapse: "collapse",
+                fontSize: 14,
+              }}
+            >
+              <thead style={{ background: "#f9fafb" }}>
+                <tr>
+                  <th
+                    style={{
+                      textAlign: "left",
+                      padding: "8px",
+                      borderBottom: "1px solid #e5e7eb",
+                    }}
+                  >
+                    Size
+                  </th>
+                  <th
+                    style={{
+                      textAlign: "right",
+                      padding: "8px",
+                      borderBottom: "1px solid #e5e7eb",
+                    }}
+                  >
+                    Price
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style={{ padding: "8px" }}>18mm</td>
+                  <td style={{ padding: "8px", textAlign: "right" }}>
+                    ₹ {item.price_18mm || "—"}
+                  </td>
+                </tr>
+                <tr>
+                  <td style={{ padding: "8px" }}>12mm</td>
+                  <td style={{ padding: "8px", textAlign: "right" }}>
+                    ₹ {item.price_12mm || "—"}
+                  </td>
+                </tr>
+                <tr>
+                  <td style={{ padding: "8px" }}>8mm</td>
+                  <td style={{ padding: "8px", textAlign: "right" }}>
+                    ₹ {item.price_8mm || "—"}
+                  </td>
+                </tr>
+                <tr>
+                  <td style={{ padding: "8px" }}>6mm</td>
+                  <td style={{ padding: "8px", textAlign: "right" }}>
+                    ₹ {item.price_6mm || "—"}
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      {/* 👇 Divider line after each category */}
+      {index !== items.length - 1 && (
+        <hr
+          style={{
+            border: "none",
+            borderTop: "2px solid #000",
+            margin: "16px 0",
+          }}
+        />
+      )}
+    </React.Fragment>
+  ))}
+</main>
+
 
         <footer style={{ marginTop: 18, color: "#6b7280", fontSize: 13, textAlign: "center" }}>
           Plywood rates are indicative. Contact us for latest prices and availability.
