@@ -14,7 +14,7 @@ import React, { useEffect, useState } from "react";
 const CSV_URL = process.env.REACT_APP_CSV_URL || "https://docs.google.com/spreadsheets/d/e/2PACX-1vQoZSdWro_MtEAqvlyE3ZRLdPwOHG8JnSCvd5XUK1jnSBrWPsnl47_2tPvPs5t4_LeGwl72kPu03vuS/pub?gid=0&single=true&output=csv";
 
 function escapeHtml(s) {
-  if (!s && s !=0) return "";
+  if (!s && s !== 0) return "";
   return String(s)
     .replace(/&/g, "&amp;&")
     .replace(/</g, "&lt;")
