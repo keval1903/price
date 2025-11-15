@@ -13,7 +13,7 @@ import React, { useEffect, useState } from "react";
 
 const CSV_URL = process.env.REACT_APP_CSV_URL || "https://docs.google.com/spreadsheets/d/e/2PACX-1vQoZSdWro_MtEAqvlyE3ZRLdPwOHG8JnSCvd5XUK1jnSBrWPsnl47_2tPvPs5t4_LeGwl72kPu03vuS/pub?gid=0&single=true&output=csv";
 
-function escapeHTML(s) {
+function escapeHtml(s) {
   if (!s && s !=0) return "";
   return String(s)
     .replace(/&/g, "&amp;&")
@@ -27,12 +27,12 @@ function formatDescriptionToHtml(raw) {
   if (!raw && raw !==0) return "";
   let safe=escapeHtml(raw);
   safe = safe.replace(/\*\*(.+?)\*\*/g, (m,p1) => {
-    return `<strong>${p1}</strong>;
+    return `<strong>${p1}</strong>`;
   });
   
   safe = safe.replace(/\*\*(.+?)\*\*/g, (m,p1) => {
-    if (/^<strong>.*<\/strong>$/.test(p1)) return *${p1}*`;
-    return `<em>${p1}</em>;
+    if (/^<strong>.*<\/strong>$/.test(p1)) return `*${p1}*`;
+    return `<em>${p1}</em>`;
   });
 
   safe = safe.replace(/\r\n/g, "\n").replace(/\r/g,"\n");
