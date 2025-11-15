@@ -29,7 +29,7 @@ function formatDescriptionToHtml(raw) {
   const tagPattern = /<\/?(b|strong|i|em|br)(\s*\/?)>/gi;
   const placeholders = [];
   text = text.replace(tagPattern, (match) => {
-    cont token = `@@TAG_${placeholders.length}@@`;
+    const token = `@@TAG_${placeholders.length}@@`;
     placeholders.push(match.toLowerCase());
     return token;
   });
