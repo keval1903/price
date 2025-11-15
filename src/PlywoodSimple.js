@@ -39,7 +39,7 @@ function formatDescriptionToHtml(raw) {
   placeholders.forEach((orig, idx) => {
     let tag = orig.toLowerCase();
     if (tag === "<br>") tag = "<br/>";
-    text = text.replace(@@TAG_${idx}@@`, tag);
+    text = text.replace(`@@TAG_${idx}@@`, tag);
   });
   return text;
 }
