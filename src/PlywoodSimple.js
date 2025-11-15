@@ -25,19 +25,23 @@ function escapeHtml(s) {
 
 function formatDescriptionToHtml(raw) {
   if (!raw && raw !==0) return "";
-  let safe=escapeHtml(raw);
-  safe = safe.replace(/\*\*(.+?)\*\*/g, (m,p1) => {
-    return `<strong>${p1}</strong>`;
+  let text = String(raw).replace(/\r\n/g,"\n").replace(/\r/g,"\n");
+  const tagPattern = /<\/?(b|strong|i|em|br)(\s*\/?)>/gi;
+  const placeholders = [];
+  text = text.replace(tagPattern, (match) => {
+    cont token = `@@TAG_${placeholders.length}@@`;
+    placeholders.push(match.toLowerCase());
+    return token;
   });
-  
-  safe = safe.replace(/\*\*(.+?)\*\*/g, (m,p1) => {
-    if (/^<strong>.*<\/strong>$/.test(p1)) return `*${p1}*`;
-    return `<em>${p1}</em>`;
+  text = escapeHtml(text);
+  text = text.replace(/\*(.+?)\*/g, "<em>$1</em>");
+  text = text.replace(/\n/g, "<br/>");
+  placeholders.forEach((orig, idx) => {
+    let tag = orig.toLowerCase();
+    if (tag === "<br>") tag = "<br/>";
+    text = text.replace(@@TAG_${idx}@@`, tag);
   });
-
-  safe = safe.replace(/\r\n/g, "\n").replace(/\r/g,"\n");
-  safe = safe.replace(/\n/g, "<br/>");
-  return safe
+  return text;
 }
             
 
