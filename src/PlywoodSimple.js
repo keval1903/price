@@ -162,7 +162,7 @@ export default function PlywoodSimple() {
           {item.description && (
             <div style={{ color: "#374151" }}
             dangerouslySetInnerHTML={{__html:formatDescriptionToHtml(item.description) }}
-            </div>
+            />
           )}
 
           {/* Price table */}
